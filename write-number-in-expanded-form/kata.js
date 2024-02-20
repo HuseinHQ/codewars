@@ -1,22 +1,18 @@
 function expandedForm(num) {
-  num = String(num);
-  const arr = [];
-  for (i = 0; i < num.length; i++) {
-    if (num[i] != 0) {
-      arr.push(num[i]);
-    } else {
-      arr.push('');
-    }
-  }
-
-  arr.map((char, i) => {
-    if (char) {
-      char = +char;
-      return char * (1 + Math.pow(10, arr.length - 1 - i));
+  num = String(num).split('');
+  result = [];
+  num.map((number, indeks) => {
+    if (number != '0') {
+      result.push(number * Math.pow(10, num.length - 1 - indeks));
     }
   });
-
-  console.log(arr);
+  return result.join(' + ');
 }
 
-expandedForm(30704);
+function expandedForm(num) {
+  num = String(num).split('');
+  const newNum = num.map((val, i) => val != 0 && String(val * Math.pow(10, num.length - 1 - i))).filter(Boolean);
+  return newNum.join(' + ');
+}
+
+console.log(expandedForm(30704));
